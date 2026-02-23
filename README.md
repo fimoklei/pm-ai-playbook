@@ -6,7 +6,7 @@ A catalog of AI practices built and tested by a product manager — one year of 
 
 |     | Category      | What's inside                                                                          | Link                       |
 | --- | ------------- | -------------------------------------------------------------------------------------- | -------------------------- |
-| 🗺️  | **Workflows** | 8 PM decision chains (JTBD → First Principles → Pre-Mortem) + 8 spec-driven frameworks | [./workflows](./workflows) |
+| 🗺️  | **Workflows** | PM workflows + Spec-driven frameworks | [./workflows](./workflows) |
 | 🧠  | **Skills**    | 25+ reusable AI behavior patterns across 9 domains                                     | [./skills](./skills)       |
 | 🤖  | **Agents**    | Focused AI personas: security reviewer, architect                                      | [./agents](./agents)       |
 | ⚙️  | **Hooks**     | Automation scripts that run on file edits and git events                               | [./hooks](./hooks)         |

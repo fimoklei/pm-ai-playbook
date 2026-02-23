@@ -7,7 +7,7 @@ Reusable command templates that standardize how we plan and run AI work.
 - [PRD workflow commands](#prd-workflow-commands)
 - [Workflow commands](#workflow-commands)
 
-## PRD workflow commands
+## 📋 PRD workflow commands
 
 | Name           | Purpose                                                            | When to use                                                  | Link                                               |
 | -------------- | ------------------------------------------------------------------ | ------------------------------------------------------------ | -------------------------------------------------- |
@@ -15,7 +15,7 @@ Reusable command templates that standardize how we plan and run AI work.
 | Generate tasks | Create a detailed task list from an existing PRD for developers    | After PRD is approved and you need implementation steps      | [./prd/generate-tasks.md](./prd/generate-tasks.md) |
 | Process task   | Process a specific task from the generated task list               | When working through individual implementation tasks         | [./prd/process-task.md](./prd/process-task.md)     |
 
-## Workflow commands
+## ⚡ Workflow commands
 
 | Name                 | Purpose                                                                            | When to use                                                                 | Link                                                                     |
 | -------------------- | ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------------------ |

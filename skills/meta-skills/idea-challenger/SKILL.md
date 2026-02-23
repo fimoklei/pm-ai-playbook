@@ -12,6 +12,7 @@ Systematically stress-test ideas through adversarial review before investment.
 ### 1. Clarify the Proposal
 
 Extract and confirm:
+
 - **Goal**: What success looks like
 - **Context**: Market/technical/organizational constraints
 - **Stakes**: What happens if this fails
@@ -22,16 +23,17 @@ Extract and confirm:
 Choose persona based on highest risk domain (or rotate for comprehensive analysis):
 
 - **Market Risk** → Hedge Fund Manager
-- **Security/Compliance Risk** → Senior Security Engineer  
+- **Security/Compliance Risk** → Senior Security Engineer
 - **Logic/Positioning Risk** → Devil's Advocate
 - **Cognitive Bias Risk** → Cognitive Variability Expert
 - **Evidence Quality Risk** → Skeptical Engineer
 
-See [PERSONAS.md](references/PERSONAS.md) for detailed persona profiles and questioning techniques.
+See [personas.md](references/personas.md) for detailed persona profiles and questioning techniques.
 
 ### 3. Execute Challenge
 
 Deliver **3-5 devastating critiques** that expose:
+
 - Hidden failure modes
 - Invalid assumptions
 - Missing evidence
@@ -47,6 +49,7 @@ Offer **one radically different approach** that addresses the core critiques. Ju
 ### 5. Summarize Action Items
 
 List concrete next steps to validate or invalidate the critiques:
+
 - Experiments to run
 - Data to gather
 - Assumptions to test

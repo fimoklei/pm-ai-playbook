@@ -6,11 +6,11 @@ Hook patterns that enforce quality and consistency in AI development workflows.
 
 - [Claude Code hooks](#claude-code-hooks)
 
-## Claude Code hooks
+## 🪝 Claude Code hooks
 
 Global hooks installed in `~/.claude/hooks/` that apply to all Claude Code sessions.
 
-| Name                                 | Purpose                                                                                                                                          | When to use                                                                      | Location                      |
+| Name                                 | Purpose                                                                                                                                          | When to use                                                                      | Link                          |
 | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------- | ----------------------------- |
 | coding-principles (UserPromptSubmit) | Injects coding principles (DRY, YAGNI, KISS, Pragmatic) and behavioral guidelines into every user prompt. Adds random animal emoji to responses. | Automatically on every user input (all projects)                                 | `hooks/coding-principles/`    |
 | protect-main-branch (PreToolUse)     | Blocks direct commits and force-pushes on main/master. Allows normal pushes for merging.                                                         | Automatically on every Bash tool call (all projects)                             | `hooks/protect-main-branch/`  |
