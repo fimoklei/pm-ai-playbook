@@ -1,6 +1,6 @@
 # AI Best Practices
 
-A catalog of reusable AI practices built by a product manager — one year of daily experimentation with Claude Code, distilled into skills, workflows, hooks, and rules you can copy directly into your own setup.
+A catalog of AI practices built and tested by a product manager — one year of daily experimentation with Claude Code. Continuously updated as new things are explored.
 
 ## Catalog
 
