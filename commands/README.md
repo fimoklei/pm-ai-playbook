@@ -9,6 +9,8 @@ Reusable command templates that standardize how we plan and run AI work.
 
 ## 📋 PRD workflow commands
 
+Tuned spec-driven-workflow based on [ai-dev-tasks](https://github.com/snarktank/ai-dev-tasks/blob/main/create-prd.md)   
+
 | Name           | Purpose                                                            | When to use                                                  | Link                                               |
 | -------------- | ------------------------------------------------------------------ | ------------------------------------------------------------ | -------------------------------------------------- |
 | Create PRD     | Generate a clear, actionable PRD in Markdown from a feature prompt | When starting a new feature and need structured requirements | [./prd/create-prd.md](./prd/create-prd.md)         |
