@@ -80,9 +80,10 @@ For multi-step PM workflow sequences combining these skills, see [Workflows](../
 
 ## 🧪 Testing skills
 
-| Name              | Purpose                                                                                 | When to use                                                                                                                  | Link                                                                     |
-| ----------------- | --------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| Six Thinking Hats | Apply Edward de Bono's Six Thinking Hats methodology for comprehensive quality analysis | When designing test strategies, conducting test retrospectives, analyzing test failures, or facilitating testing discussions | [./testing-skills/six-thinking-hats](./testing-skills/six-thinking-hats) |
+| Name              | Purpose                                                                                                              | When to use                                                                                                                  | Link                                                                     |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| Six Thinking Hats | Apply Edward de Bono's Six Thinking Hats methodology for comprehensive quality analysis                              | When designing test strategies, conducting test retrospectives, analyzing test failures, or facilitating testing discussions | [./testing-skills/six-thinking-hats](./testing-skills/six-thinking-hats) |
+| E2E Testing       | Full end-to-end browser testing with parallel research agents, screenshot capture, database validation, and auto-fix | After implementation to validate every user journey before code review                                                       | [./testing-skills/e2e-testing](./testing-skills/e2e-testing)             |
 
 ## 🔒 Security skills
 
