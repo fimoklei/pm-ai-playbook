@@ -11,4 +11,6 @@ A catalog of AI practices built and tested by a product manager — one year of 
 | 🤖  | **Agents**    | Focused AI personas: security reviewer, architect                                      | [./agents](./agents)       |
 | ⚙️  | **Hooks**     | Automation scripts that run on file edits and git events                               | [./hooks](./hooks)         |
 | 📋  | **Rules**     | Coding and workflow standards for Claude Code sessions                                 | [./rules](./rules)         |
-| 💬  | **Commands**  | Slash command templates for recurring multi-step tasks                                 | [./commands](./commands)   |
+| 💬  | **Commands**  | Slash command templates for recurring multi-step tasks                                 | [./commands](./commands)         |
+| 🔌  | **Claude Plugins** | Curated Claude Code plugins across supporting, product dev, and coding categories | [./claude-plugins](./claude-plugins) |
+| 🛠️  | **MCP**       | Curated MCP server references for coding and workflow automation                       | [./mcp](./mcp)                   |
