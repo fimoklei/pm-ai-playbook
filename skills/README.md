@@ -66,6 +66,8 @@ A catalog of reusable skills and mental models for AI work, organized by categor
 | The challenger                 | Red-team product bets for failure modes                                            | Before major investments or launches                                              | [./meta-skills/the-challenger](./meta-skills/the-challenger)                                       |
 | Verification before completion | Validate results before declaring done                                             | Before handing off or shipping                                                    | [./testing-skills/verification-before-completion](./testing-skills/verification-before-completion) |
 | When stuck                     | Pick a clear next troubleshooting move                                             | When progress stalls or errors persist                                            | [./meta-skills/when-stuck](./meta-skills/when-stuck)                                               |
+| Diagnose                       | Disciplined 6-phase diagnosis loop for hard bugs and performance regressions       | When a bug is reported, something is broken/failing, or a performance regression is described | [./meta-skills/diagnose](./meta-skills/diagnose)                           |
+| Improve Codebase Architecture  | Surface deepening opportunities — refactors that turn shallow modules into deep ones for better testability and AI-navigability | When improving architecture, finding refactoring opportunities, or making a codebase more testable | [./meta-skills/improve-codebase-architecture](./meta-skills/improve-codebase-architecture) |
 
 ## 📦 Product management skills
 
