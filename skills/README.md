@@ -68,6 +68,7 @@ A catalog of reusable skills and mental models for AI work, organized by categor
 | When stuck                     | Pick a clear next troubleshooting move                                             | When progress stalls or errors persist                                            | [./meta-skills/when-stuck](./meta-skills/when-stuck)                                               |
 | Diagnose                       | Disciplined 6-phase diagnosis loop for hard bugs and performance regressions       | When a bug is reported, something is broken/failing, or a performance regression is described | [./meta-skills/diagnose](./meta-skills/diagnose)                           |
 | Improve Codebase Architecture  | Surface deepening opportunities — refactors that turn shallow modules into deep ones for better testability and AI-navigability | When improving architecture, finding refactoring opportunities, or making a codebase more testable | [./meta-skills/improve-codebase-architecture](./meta-skills/improve-codebase-architecture) |
+| Six Hats                       | Structured Edward de Bono six-hats debate that walks a topic through facts, intuition, upside, risk, alternatives, and moderation to produce a final recommendation | When pressure-testing a decision, strategy, plan, architecture choice, or career move through six colored-perspective lenses | [./meta-skills/six-hats](./meta-skills/six-hats) |
 
 ## 📦 Product management skills
 
