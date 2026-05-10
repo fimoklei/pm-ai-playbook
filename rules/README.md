@@ -21,6 +21,7 @@ Templates and enforcement rules for CLAUDE.md files.
 | Global Template   | Template for new global standard docs                                                       | When adding a new global standard                              | [./global/global-template.md](./global/global-template.md)                       |
 | Token Efficiency  | Context efficiency guidelines — respond with the delta, not the state                       | When adding context management guidance to a global CLAUDE.md  | [./global/token-efficiency-template.md](./global/token-efficiency-template.md)   |
 | Learning Loop     | Structured knowledge extraction into domain-specific learnings folders with promotion logic | When adding continuous learning behavior to a global CLAUDE.md | [./global/claude-learning-template.md](./global/claude-learning-template.md)     |
+| Communication Style | Template for defining AI communication style, tone, and advisor relationship | When adding communication preferences to a global CLAUDE.md | [./global/communication-style-template.md](./global/communication-style-template.md) |
 
 ## 📦 Project rules
 
