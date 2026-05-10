@@ -69,6 +69,7 @@ A catalog of reusable skills and mental models for AI work, organized by categor
 | Diagnose                       | Disciplined 6-phase diagnosis loop for hard bugs and performance regressions       | When a bug is reported, something is broken/failing, or a performance regression is described | [./meta-skills/diagnose](./meta-skills/diagnose)                           |
 | Improve Codebase Architecture  | Surface deepening opportunities — refactors that turn shallow modules into deep ones for better testability and AI-navigability | When improving architecture, finding refactoring opportunities, or making a codebase more testable | [./meta-skills/improve-codebase-architecture](./meta-skills/improve-codebase-architecture) |
 | Six Hats                       | Structured Edward de Bono six-hats debate that walks a topic through facts, intuition, upside, risk, alternatives, and moderation to produce a final recommendation | When pressure-testing a decision, strategy, plan, architecture choice, or career move through six colored-perspective lenses | [./meta-skills/six-hats](./meta-skills/six-hats) |
+| 47                             | Turn any rough draft, idea, or task description into a finished, copy-pasteable prompt optimized for Opus 4.7 in the chat app | When rewriting, optimizing, or drafting a prompt for claude.ai, the Mac app, or iOS — not the API | [./meta-skills/47](./meta-skills/47) |
 
 ## 📦 Product management skills
 
