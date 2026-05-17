@@ -27,6 +27,8 @@ A catalog of reusable skills and mental models for AI work, organized by categor
 | Session summarizer  | Captures session knowledge as a structured summary for future reference                                         | After or during a coding session             | [./agentic-skills/session-summarizer](./agentic-skills/session-summarizer)   |
 | Skill creator       | Formalize repeatable practices into skills                                                                      | When you want a reusable workflow            | [./agentic-skills/skill-creator](./agentic-skills/skill-creator)             |
 | Karpathy guidelines | Behavioral guardrails to reduce LLM coding mistakes (think first, keep it simple, surgical diffs, goal-driven). | When writing, reviewing, or refactoring code | [./agentic-skills/karpathy-guidelines](./agentic-skills/karpathy-guidelines) |
+| Workflow commit     | Create a safe, intentional git commit from the current worktree                                                 | When preparing local changes for shipping    | [./agentic-skills/workflow-commit](./agentic-skills/workflow-commit)         |
+| Workflow ship       | Ship a feature branch by pushing, opening a PR, merging to main, and cleaning up safely                         | When a feature branch is ready to merge      | [./agentic-skills/workflow-ship](./agentic-skills/workflow-ship)             |
 
 ## ⚙️ Backend skills
 
