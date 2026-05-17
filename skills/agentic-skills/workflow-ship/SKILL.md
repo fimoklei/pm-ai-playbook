@@ -38,7 +38,18 @@ Ship the current feature branch by pushing, opening a PR, merging it to `main`, 
    - If `codex` exits non-zero, stop and report — do not push.
    - Parse the reviewer stdout for the regex `Review comment:|\[P[0-3]\]`.
    - If there is no match, the review is clean. Continue to step 3 without prompting.
-   - If there is a match, halt and present two options to the user (use `AskUserQuestion` in Claude Code; in Codex or other hosts, prompt the user explicitly and wait for an answer):
+   - If there is a match, halt. Before presenting the options, write a short plain-language summary **in Dutch** using this exact format:
+     ```
+     Severity: laag / midden / hoog
+     Wat er speelt: <1-2 zinnen, plain language>
+     Advies: ship / fix eerst / jouw call
+     ```
+     Map codex priority to severity as a soft guideline:
+     - `P0` present → **hoog** / fix eerst
+     - `P1` present (no `P0`) → **midden** / jouw call
+     - only `P2` / `P3` / nits → **laag** / ship
+     Deviating from the mapping is allowed when context warrants it (e.g. P1 in a comment, P2 touching auth) — add one short sentence explaining why.
+     After the summary, present two options to the user (use `AskUserQuestion` in Claude Code; in Codex or other hosts, prompt the user explicitly and wait for an answer):
      - `Abort ship` (Recommended) — stop the workflow. The user fixes the findings outside ship (e.g. via `workflow:commit`) and re-runs `workflow:ship`. Do not attempt fixes inside this workflow.
      - `Ignore findings and ship anyway` — continue to step 3.
 
