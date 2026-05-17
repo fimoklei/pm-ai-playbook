@@ -84,12 +84,16 @@ if [ "$IS_COMMIT" = "true" ]; then
     STAGED=$(git -C "$EFFECTIVE_CWD" diff --cached --name-only 2>/dev/null)
     # Also parse paths from 'git add' in chained commands (git add X && git commit)
     # This catches the PreToolUse race: git add hasn't run yet when hook fires
-    ADD_PATHS=$(echo "$COMMAND" | grep -oE 'git add [^&|;]+' | sed 's/git add //' | tr ' ' '\n')
+    ADD_PATHS=$(echo "$COMMAND" | grep -oE 'git add [^&|;]+' | sed 's/git add //' | tr ' ' '\n' | sed -E "s/^['\"]//; s/['\"]$//")
     STATUS_PATHS=""
     if echo "$ADD_PATHS" | grep -qE '^(-A|--all|-u|--update|\.|:/$)$'; then
       STATUS_PATHS=$(git -C "$EFFECTIVE_CWD" status --porcelain --untracked-files=all 2>/dev/null | sed -E 's/^...//; s/ -> /\n/')
     fi
-    ALL_PATHS=$(printf '%s\n%s\n%s' "$STAGED" "$ADD_PATHS" "$STATUS_PATHS" | sort -u)
+    COMMIT_ALL_PATHS=""
+    if echo "$COMMAND" | grep -qE '(^|[[:space:]])(--all|-a[a-zA-Z]*)([[:space:]]|$)'; then
+      COMMIT_ALL_PATHS=$(git -C "$EFFECTIVE_CWD" status --porcelain 2>/dev/null | grep -E '^[ MARCUD][MD]' | sed -E 's/^...//; s/ -> /\n/')
+    fi
+    ALL_PATHS=$(printf '%s\n%s\n%s\n%s' "$STAGED" "$ADD_PATHS" "$STATUS_PATHS" "$COMMIT_ALL_PATHS" | sort -u)
 
     PROTECTED=false
     while IFS= read -r file; do
