@@ -4,21 +4,35 @@
 #   only commits touching protected paths are blocked.
 # PreToolUse hook — reads tool input from stdin JSON.
 
-INPUT=$(cat)
-COMMAND=$(echo "$INPUT" | jq -r '.tool_input.command // empty')
-SESSION_CWD=$(echo "$INPUT" | jq -r '.cwd // empty')
+INPUT=$(</dev/stdin)
+
+if command -v jq >/dev/null 2>&1; then
+  COMMAND=$(echo "$INPUT" | jq -r '.tool_input.command // empty')
+  SESSION_CWD=$(echo "$INPUT" | jq -r '.cwd // empty')
+else
+  COMMAND=""
+  SESSION_CWD=""
+fi
 
 deny() {
   local reason="$1"
-  jq -n --arg reason "$reason" '{
-    hookSpecificOutput: {
-      hookEventName: "PreToolUse",
-      permissionDecision: "deny",
-      permissionDecisionReason: $reason
-    }
-  }'
+  if command -v jq >/dev/null 2>&1; then
+    jq -n --arg reason "$reason" '{
+      hookSpecificOutput: {
+        hookEventName: "PreToolUse",
+        permissionDecision: "deny",
+        permissionDecisionReason: $reason
+      }
+    }'
+  else
+    printf '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"%s"}}\n' "$reason"
+  fi
   exit 2
 }
+
+if ! command -v jq >/dev/null 2>&1; then
+  deny "BLOCKED: protect-main-branch hook requires jq to inspect protected git commands."
+fi
 
 # Resolve effective cwd: an inline `cd <path>` in the command wins, otherwise the
 # session cwd. This matters because the agent often runs `cd /other/repo && git commit`
@@ -36,7 +50,7 @@ if [ -z "$EFFECTIVE_CWD" ] || [ ! -d "$EFFECTIVE_CWD" ]; then
   EFFECTIVE_CWD="$SESSION_CWD"
 fi
 
-IS_COMMIT=$(echo "$COMMAND" | grep -qE '(^|[;&|]+[[:space:]]*)git[[:space:]]+commit\b' && echo true || echo false)
+IS_COMMIT=$(echo "$COMMAND" | grep -qE '(^|[;&|]+[[:space:]]*)git[[:space:]]+commit([[:space:]]|$)' && echo true || echo false)
 IS_FORCE_PUSH=$(echo "$COMMAND" | grep -qE '(^|[;&|]+[[:space:]]*)git[[:space:]]+push\b[^;&|]*(--force($|[=[:space:]])|-f([[:space:]]|$))' && echo true || echo false)
 
 if [ -z "$EFFECTIVE_CWD" ] || [ ! -d "$EFFECTIVE_CWD" ]; then
@@ -72,8 +86,8 @@ if [ "$IS_COMMIT" = "true" ]; then
     # This catches the PreToolUse race: git add hasn't run yet when hook fires
     ADD_PATHS=$(echo "$COMMAND" | grep -oE 'git add [^&|;]+' | sed 's/git add //' | tr ' ' '\n')
     STATUS_PATHS=""
-    if echo "$ADD_PATHS" | grep -qE '^(-A|--all|\.|:/$)$'; then
-      STATUS_PATHS=$(git -C "$EFFECTIVE_CWD" status --porcelain --untracked-files=all 2>/dev/null | sed -E 's/^...//')
+    if echo "$ADD_PATHS" | grep -qE '^(-A|--all|-u|--update|\.|:/$)$'; then
+      STATUS_PATHS=$(git -C "$EFFECTIVE_CWD" status --porcelain --untracked-files=all 2>/dev/null | sed -E 's/^...//; s/ -> /\n/')
     fi
     ALL_PATHS=$(printf '%s\n%s\n%s' "$STAGED" "$ADD_PATHS" "$STATUS_PATHS" | sort -u)
 
@@ -100,9 +114,11 @@ if [ "$IS_COMMIT" = "true" ]; then
   deny "BLOCKED: Cannot commit directly to main. Create a branch first: git checkout -b feature/<description> (or fix/<description>, chore/<description>)."
 fi
 
-# Block: git push --force on main (unconditional — no repo gets a pass)
+# Block: git push --force to main/master. `--force-with-lease` is allowed.
 if [ "$IS_FORCE_PUSH" = "true" ]; then
-  deny "BLOCKED: Force-push to main is not allowed. This rewrites shared history."
+  if echo "$COMMAND" | grep -qE '(^|[[:space:]:/])(main|master)([[:space:]]|$)' || ! echo "$COMMAND" | grep -qE '(^|[;&|]+[[:space:]]*)git[[:space:]]+push\b[^;&|]*[[:space:]][^[:space:]-][^[:space:]]*[[:space:]][^[:space:]]+'; then
+    deny "BLOCKED: Force-push to main/master is not allowed. This rewrites shared history."
+  fi
 fi
 
 exit 0

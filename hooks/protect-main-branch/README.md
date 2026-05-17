@@ -43,7 +43,7 @@ Repos with `.claude/allow-main-commits` use smart mode: content-only commits on 
 4. Resolves the effective repo from an inline `cd <path>` in the command, falling back to the session `cwd`
 5. Blocks `git commit` on `main` / `master`
 6. In smart mode, allows content-only commits but blocks commits touching `.claude/` or `06-system/`
-7. Blocks `git push --force` / `git push -f` — prevents destructive rewrite of shared history
+7. Blocks `git push --force` / `git push -f` to `main` / `master` — prevents destructive rewrite of shared history
 8. Allows everything else (normal push, checkout, branch, merge, etc.)
 
 ## Testing
@@ -52,8 +52,11 @@ Repos with `.claude/allow-main-commits` use smart mode: content-only commits on 
 # Simulate a git commit on main (should deny)
 echo '{"cwd":"/path/to/repo","tool_input":{"command":"git commit -m test"}}' | bash protect-main-branch.sh
 
-# Simulate a force-push on main (should deny)
+# Simulate a force-push on main/master (should deny)
 echo '{"cwd":"/path/to/repo","tool_input":{"command":"git push --force origin main"}}' | bash protect-main-branch.sh
+
+# Simulate a force-push to another branch (should pass through silently)
+echo '{"cwd":"/path/to/repo","tool_input":{"command":"git push --force origin feature/example"}}' | bash protect-main-branch.sh
 
 # Simulate safer force-with-lease (should pass through silently)
 echo '{"cwd":"/path/to/repo","tool_input":{"command":"git push --force-with-lease origin feature/example"}}' | bash protect-main-branch.sh
@@ -69,6 +72,9 @@ echo '{"cwd":"/path/to/other/repo","tool_input":{"command":"cd /path/to/repo && 
 
 # In smart mode, broad staging that touches protected paths should still deny
 echo '{"cwd":"/path/to/repo","tool_input":{"command":"git add . && git commit -m test"}}' | bash protect-main-branch.sh
+
+# In smart mode, update staging that touches protected tracked paths should still deny
+echo '{"cwd":"/path/to/repo","tool_input":{"command":"git add -u && git commit -m test"}}' | bash protect-main-branch.sh
 ```
 
 ## Removal
