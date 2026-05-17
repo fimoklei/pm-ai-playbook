@@ -63,6 +63,6 @@ Create a safe, intentional git commit from the current worktree.
 
 ## Command Notes
 
-- Follow the active agent and project shell rules. In Michiel's Codex setup, prefix shell commands with `rtk`.
+- Follow the active agent and project shell rules.
 - Use non-interactive git commands whenever possible.
 - Do not run destructive commands unless the user explicitly asks for them.

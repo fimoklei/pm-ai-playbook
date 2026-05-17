@@ -24,7 +24,8 @@ Ship the current feature branch by pushing, opening a PR, merging it to `main`, 
    - Stop if the branch is `main` or `master`.
    - Run `git status --short --branch`.
    - Stop if there are uncommitted changes and suggest `workflow:commit`.
-   - Run `git log main..HEAD --oneline` and stop if there are no commits ahead of `main`.
+   - Resolve the base ref: use local `main` when present, otherwise use `origin/main`.
+   - Run `git log <base-ref>..HEAD --oneline` and stop if there are no commits ahead of the base ref.
 
 2. Run cross-model review as final gate:
    - Detect runtime by checking the `CLAUDECODE` environment variable:
@@ -35,9 +36,10 @@ Ship the current feature branch by pushing, opening a PR, merging it to `main`, 
      - Run `codex review --base main` in the foreground. Stream the output to the user.
    - Claude reviewer path (running inside Codex or elsewhere):
      - Verify `claude` is on PATH (`command -v claude`). If missing, stop with a clear error - do not silently skip.
+     - In Codex, run this command with escalated sandbox permissions. Claude CLI OAuth credentials may live in macOS Keychain and be unreadable from Codex's default workspace-write sandbox. Do not work around this by exporting `ANTHROPIC_API_KEY` or `CLAUDE_CODE_OAUTH_TOKEN` unless the user explicitly asks.
      - Run, in the foreground, streaming output to the user:
        ```
-       git diff main...HEAD | claude -p --model sonnet "Review this diff for defects (bugs, edge cases, security holes, broken assumptions). For every finding output a line in this exact format: 'Review comment: [P0|P1|P2|P3] <description>'. If there are no findings, output exactly: 'No findings.' Do not output anything else."
+       git diff <base-ref>...HEAD | claude -p --model sonnet "Review this diff for defects (bugs, edge cases, security holes, broken assumptions). For every finding output a line in this exact format: 'Review comment: [P0|P1|P2|P3] <description>'. If there are no findings, output exactly: 'No findings.' Do not output anything else."
        ```
    - If the reviewer exits non-zero, stop and report - do not push.
    - Parse the reviewer stdout for the regex `Review comment:|\[P[0-3]\]`.
@@ -52,8 +54,8 @@ Ship the current feature branch by pushing, opening a PR, merging it to `main`, 
    - If upstream exists, run `git push`.
 
 4. Summarize the shipment:
-   - Run `git log main..HEAD --oneline`.
-   - Run `git diff --stat main...HEAD`.
+   - Run `git log <base-ref>..HEAD --oneline`.
+   - Run `git diff --stat <base-ref>...HEAD`.
    - Show the commits and a compact summary before creating the PR.
 
 5. Create the PR:

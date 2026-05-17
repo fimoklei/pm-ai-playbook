@@ -55,6 +55,9 @@ echo '{"cwd":"/path/to/repo","tool_input":{"command":"git commit -m test"}}' | b
 # Simulate a force-push on main (should deny)
 echo '{"cwd":"/path/to/repo","tool_input":{"command":"git push --force origin main"}}' | bash protect-main-branch.sh
 
+# Simulate safer force-with-lease (should pass through silently)
+echo '{"cwd":"/path/to/repo","tool_input":{"command":"git push --force-with-lease origin feature/example"}}' | bash protect-main-branch.sh
+
 # Simulate a normal push on main (should pass through silently)
 echo '{"cwd":"/path/to/repo","tool_input":{"command":"git push origin main"}}' | bash protect-main-branch.sh
 
@@ -63,6 +66,9 @@ echo '{"cwd":"/path/to/repo","tool_input":{"command":"ls -la"}}' | bash protect-
 
 # Simulate a command that changes repo inline; inline cd should win over cwd
 echo '{"cwd":"/path/to/other/repo","tool_input":{"command":"cd /path/to/repo && git commit -m test"}}' | bash protect-main-branch.sh
+
+# In smart mode, broad staging that touches protected paths should still deny
+echo '{"cwd":"/path/to/repo","tool_input":{"command":"git add . && git commit -m test"}}' | bash protect-main-branch.sh
 ```
 
 ## Removal
