@@ -30,6 +30,7 @@ A catalog of reusable skills and mental models for AI work, organized by categor
 | Intent Layer        | Build and maintain agent context files with local rules, verification commands, and staleness checks            | When initializing or maintaining agent-friendly project documentation | [./agentic-skills/intent-layer](./agentic-skills/intent-layer)               |
 | Workflow commit     | Create a safe, intentional git commit from the current worktree                                                 | When preparing local changes for shipping    | [./agentic-skills/workflow-commit](./agentic-skills/workflow-commit)         |
 | Workflow ship       | Ship a feature branch by pushing, opening a PR, merging to main, and cleaning up safely                         | When a feature branch is ready to merge      | [./agentic-skills/workflow-ship](./agentic-skills/workflow-ship)             |
+| Thermo-nuclear code quality review | Strict maintainability audit hunting "code-judo" restructurings, 1k-line file sprawl, and spaghetti conditionals | When you want an especially harsh deep code-quality review of a branch's diff | [./agentic-skills/thermo-nuclear-code-quality-review](./agentic-skills/thermo-nuclear-code-quality-review) |
 
 ## ⚙️ Backend skills
 
