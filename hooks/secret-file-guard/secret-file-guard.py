@@ -50,7 +50,10 @@ def main() -> int:
     if not file_path:
         return 0
 
-    name = os.path.basename(file_path)
+    # Lowercase the basename before matching: fnmatch is case-sensitive on
+    # POSIX, and macOS filesystems are case-insensitive, so .ENV would be the
+    # same file as .env yet slip past case-sensitive patterns otherwise.
+    name = os.path.basename(file_path).lower()
     if name in ALLOW_NAMES:
         return 0
 
