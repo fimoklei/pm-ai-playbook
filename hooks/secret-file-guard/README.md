@@ -64,7 +64,14 @@ echo "exit: $?"   # expect 0
 echo '{"tool_input":{"file_path":"/x/src/app.ts"}}' \
   | python3 ~/.claude/hooks/secret-file-guard.py
 echo "exit: $?"   # expect 0
+
+# Should block (uppercase variant — matching is case-insensitive)
+echo '{"tool_input":{"file_path":"/x/.ENV"}}' \
+  | python3 ~/.claude/hooks/secret-file-guard.py
+echo "exit: $?"   # expect 2
 ```
+
+Matching lowercases the basename first, so casing tricks (`.ENV`, `prod.PEM`, `ID_RSA`) cannot slip past the deny-list.
 
 ## Removal
 
