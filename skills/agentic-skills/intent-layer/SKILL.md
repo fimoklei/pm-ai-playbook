@@ -36,6 +36,26 @@ Adapter example:
 
 Child `AGENTS.md` files in subdirectories are encouraged for complex subsystems. Root adapters should point to canonical context instead of duplicating it.
 
+## Required Root Intent Layer
+
+Add this to the canonical context file at project root: `AGENTS.md` by default, or `CLAUDE.md` in CLAUDE-only mode. In adapter mode, add it to `AGENTS.md`; `CLAUDE.md` imports it.
+
+```markdown
+## Intent Layer
+
+**Before modifying code in a subdirectory, read its AGENTS.md first** to understand local patterns and invariants.
+
+- **[Area 1]**: `path/to/AGENTS.md` - Brief description
+- **[Area 2]**: `path/to/AGENTS.md` - Brief description
+
+### Global Invariants
+
+- [Invariant that applies across all areas]
+- [Another global invariant]
+```
+
+This navigation contract is mandatory when child context nodes exist. Extend it with the project's real boundaries and global invariants; do not leave placeholder areas in finalized context.
+
 ## Workflow
 
 ```
@@ -58,6 +78,7 @@ Child `AGENTS.md` files in subdirectories are encouraged for complex subsystems.
    Child nodes needed  -> Add local AGENTS.md files with verification commands
 
 5. Execute
+   Add the Required Root Intent Layer to the canonical root context file
    Use references/templates.md for structure
    Use references/node-examples.md for real-world patterns
    Validate: canonical source is clear, READ-FIRST directive exists, every node has Verification, <4k tokens per node

@@ -2,7 +2,9 @@
 
 ## Root Context Templates
 
-### AGENTS.md Canonical Root
+Add the root template to the canonical context file: `AGENTS.md` by default, or `CLAUDE.md` in CLAUDE-only mode. When using a thin `CLAUDE.md` adapter, keep this content in `AGENTS.md` and import it rather than duplicating it.
+
+### Canonical Root Context
 
 ```markdown
 # Project Context
