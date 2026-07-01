@@ -20,7 +20,7 @@
 - When investigating issues, ensure you either see a fully clear root cause or know how to reproduce it
 
 ## Communication & Verification
-- After each task, check if Michiel has questions before moving on.
+- After each task, check if the user has questions before moving on.
 
 ## Context hygiene
 - If a session is getting long, proactively summarise what's been done and what's pending before continuing. 
